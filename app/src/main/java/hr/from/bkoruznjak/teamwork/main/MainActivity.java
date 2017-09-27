@@ -1,10 +1,12 @@
-package hr.from.bkoruznjak.teamwork;
+package hr.from.bkoruznjak.teamwork.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import hr.from.bkoruznjak.teamwork.R;
 import hr.from.bkoruznjak.teamwork.databinding.ActivityMainBinding;
+import hr.from.bkoruznjak.teamwork.root.TeamWorkApp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,5 +16,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ((TeamWorkApp) getApplication()).getAppComponent().inject(this);
     }
 }

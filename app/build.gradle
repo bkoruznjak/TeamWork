@@ -20,12 +20,38 @@ android {
     }
 }
 
+ext {
+    daggerVersion = '2.11'
+    gsonVersion = '2.6.2'
+    retrofitVersion = '2.3.0'
+    supportLibraryVersion = '26.+'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    //tests
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    //compat & UI
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$supportLibraryVersion"
+
+    //dependency injection
+    compile "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    //networking
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    //json parsing
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
