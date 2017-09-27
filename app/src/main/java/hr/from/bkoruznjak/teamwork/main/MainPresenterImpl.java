@@ -61,7 +61,7 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
     }
 
     @Override
-    public void onSuccess(AllProjectsResponseModel result) {
+    public void onSuccess(final AllProjectsResponseModel result) {
         if (mMainView != null) {
             mMainView.hideProgress();
             mMainView.setItems(result.getProjects());

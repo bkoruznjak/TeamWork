@@ -2,7 +2,11 @@ package hr.from.bkoruznjak.teamwork.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
@@ -10,6 +14,7 @@ import java.util.List;
 
 import hr.from.bkoruznjak.teamwork.R;
 import hr.from.bkoruznjak.teamwork.databinding.ActivityMainBinding;
+import hr.from.bkoruznjak.teamwork.main.adapter.ProjectRecycleAdapter;
 import hr.from.bkoruznjak.teamwork.main.contract.MainPresenter;
 import hr.from.bkoruznjak.teamwork.main.contract.MainView;
 import hr.from.bkoruznjak.teamwork.network.TeamWebApi;
@@ -30,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     private void init() {
         mPresenter = new MainPresenterImpl(this, ((TeamWorkApp) getApplication()).getAppComponent());
+        mainBinding.recyclerViewMainContent.setLayoutManager(new LinearLayoutManager(this));
+        mainBinding.recyclerViewMainContent.setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override
@@ -55,9 +62,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mainBinding.progressBar.setVisibility(View.INVISIBLE);
     }
 
+    @MainThread
     @Override
-    public void setItems(List<Project> items) {
-        Log.d("žžž", "got items:" + items.size());
+    public void setItems(@NonNull final List<Project> items) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mainBinding.recyclerViewMainContent.setAdapter(new ProjectRecycleAdapter(items));
+            }
+        });
     }
 
     @Override

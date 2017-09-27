@@ -18,6 +18,8 @@ public interface TeamWebApi {
     String BASE_URL = "https://" + USERNAME + ".teamwork.com";
     String GET_ALL_PROJECTS_URL = "https://%s.teamwork.com/projects.json";
 
+    String PLACEHOLDER_IMAGE_URL = "https://tw-webserver2.teamworkpm.net/sites/yat/images/1471525490286_wild-yak.jpg";
+
     @Headers({
             "Accept:application/json",
             "Content-Type:application/x-www-form-urlencoded"

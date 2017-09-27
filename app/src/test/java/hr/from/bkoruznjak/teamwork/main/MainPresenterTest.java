@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import hr.from.bkoruznjak.teamwork.main.contract.MainInteractor;
 import hr.from.bkoruznjak.teamwork.main.contract.MainView;
+import hr.from.bkoruznjak.teamwork.network.TeamWebApi;
 import hr.from.bkoruznjak.teamwork.network.model.AllProjectsResponseModel;
 import hr.from.bkoruznjak.teamwork.network.model.Project;
 import hr.from.bkoruznjak.teamwork.root.AppComponent;
@@ -68,4 +69,11 @@ public class MainPresenterTest {
         mMainPresenter.onItemClicked(1);
         verify(view, times(1)).showMessage(anyString());
     }
+
+    @Test
+    public void areProjectsBeingReturnedForUser() {
+        mMainPresenter.loadUserProjectsToUi(TeamWebApi.USERNAME);
+
+    }
+
 }

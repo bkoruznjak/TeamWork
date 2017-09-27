@@ -24,6 +24,7 @@ ext {
     daggerVersion = '2.11'
     gsonVersion = '2.6.2'
     retrofitVersion = '2.3.0'
+    picassoVersion = '2.5.2'
     supportLibraryVersion = '26.+'
     mockitoVersion = '2.10.0'
 }
@@ -47,6 +48,9 @@ dependencies {
     compile "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     provided 'javax.annotation:jsr250-api:1.0'
+
+    //image caching
+    compile "com.squareup.picasso:picasso:$picassoVersion"
 
     //networking
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
