@@ -12,17 +12,11 @@ import hr.from.bkoruznjak.teamwork.main.model.Result;
 
 public interface MainInteractor {
 
-    interface OnDataRetrievedFromServerListener {
-        void onSuccess(@NonNull List<Result> result);
-
-        void onError(@NonNull Throwable error);
-    }
-
-    interface OnDataRetrievedFromServerListener {
-        void onSuccess(@NonNull List<Result> result);
-
-        void onError(@NonNull Throwable error);
-    }
-
     void getAllProjectsForUser(String username, OnDataRetrievedFromServerListener callback);
+
+    interface OnDataRetrievedFromServerListener {
+        void onSuccess(@NonNull List<Result> result);
+
+        void onError(@NonNull Throwable error);
+    }
 }
