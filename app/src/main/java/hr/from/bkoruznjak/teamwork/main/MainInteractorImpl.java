@@ -31,7 +31,7 @@ public class MainInteractorImpl implements MainInteractor {
             @Override
             public void run() {
                 try {
-                    Response<AllProjectsResponseModel> response = mWebApi.getAllProjects().execute();
+                    Response<AllProjectsResponseModel> response = mWebApi.getAllProjectsForUser(String.format(TeamWebApi.GET_ALL_PROJECTS_URL, username)).execute();
                     if (response.isSuccessful()) {
                         callback.onSuccess(response.body());
                     }
