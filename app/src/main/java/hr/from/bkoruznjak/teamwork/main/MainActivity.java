@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 
@@ -46,12 +47,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showProgress() {
-        Log.d("žžž", "loading...");
+        mainBinding.progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        Log.d("žžž", "loading finished");
+        mainBinding.progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
