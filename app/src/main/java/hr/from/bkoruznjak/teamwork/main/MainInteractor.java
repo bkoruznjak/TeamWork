@@ -1,0 +1,28 @@
+package hr.from.bkoruznjak.teamwork.main;
+
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
+import hr.from.bkoruznjak.teamwork.main.model.Result;
+
+/**
+ * Created by bkoruznjak on 27/09/2017.
+ */
+
+public interface MainInteractor {
+
+    interface OnDataRetrievedFromServerListener {
+        void onSuccess(@NonNull List<Result> result);
+
+        void onError(@NonNull Throwable error);
+    }
+
+    interface OnDataRetrievedFromServerListener {
+        void onSuccess(@NonNull List<Result> result);
+
+        void onError(@NonNull Throwable error);
+    }
+
+    void getAllProjectsForUser(String username, OnDataRetrievedFromServerListener callback);
+}

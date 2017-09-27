@@ -25,6 +25,7 @@ ext {
     gsonVersion = '2.6.2'
     retrofitVersion = '2.3.0'
     supportLibraryVersion = '26.+'
+    mockitoVersion = '2.10.0'
 }
 
 dependencies {
@@ -34,6 +35,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
 
     //compat & UI
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
