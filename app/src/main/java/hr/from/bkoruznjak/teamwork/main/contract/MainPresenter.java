@@ -1,4 +1,4 @@
-package hr.from.bkoruznjak.teamwork.main;
+package hr.from.bkoruznjak.teamwork.main.contract;
 
 /**
  * Created by bkoruznjak on 27/09/2017.

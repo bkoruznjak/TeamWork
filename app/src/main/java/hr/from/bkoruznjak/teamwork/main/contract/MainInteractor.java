@@ -1,4 +1,4 @@
-package hr.from.bkoruznjak.teamwork.main;
+package hr.from.bkoruznjak.teamwork.main.contract;
 
 import android.support.annotation.NonNull;
 

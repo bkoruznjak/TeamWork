@@ -9,6 +9,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.from.bkoruznjak.teamwork.main.contract.MainInteractor;
+import hr.from.bkoruznjak.teamwork.main.contract.MainView;
 import hr.from.bkoruznjak.teamwork.main.model.Result;
 
 import static org.junit.Assert.assertNull;

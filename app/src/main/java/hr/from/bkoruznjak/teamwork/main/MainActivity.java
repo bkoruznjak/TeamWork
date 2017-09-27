@@ -9,6 +9,8 @@ import java.util.List;
 
 import hr.from.bkoruznjak.teamwork.R;
 import hr.from.bkoruznjak.teamwork.databinding.ActivityMainBinding;
+import hr.from.bkoruznjak.teamwork.main.contract.MainPresenter;
+import hr.from.bkoruznjak.teamwork.main.contract.MainView;
 import hr.from.bkoruznjak.teamwork.main.model.Result;
 import hr.from.bkoruznjak.teamwork.root.AppConstants;
 import hr.from.bkoruznjak.teamwork.root.TeamWorkApp;

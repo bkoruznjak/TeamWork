@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.from.bkoruznjak.teamwork.main.contract.MainInteractor;
 import hr.from.bkoruznjak.teamwork.main.model.Result;
 
 /**
