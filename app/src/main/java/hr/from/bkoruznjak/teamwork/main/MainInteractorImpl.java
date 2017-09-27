@@ -1,34 +1,44 @@
 package hr.from.bkoruznjak.teamwork.main;
 
-import android.os.Handler;
 import android.support.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import hr.from.bkoruznjak.teamwork.main.contract.MainInteractor;
-import hr.from.bkoruznjak.teamwork.main.model.Result;
+import hr.from.bkoruznjak.teamwork.network.TeamWebApi;
+import hr.from.bkoruznjak.teamwork.network.model.AllProjectsResponseModel;
+import retrofit2.Response;
 
 /**
+ * Interceptor is in charge of executing the network retrieval of
+ * all projects for given username and notify the callback if it
+ * exists
+ * <p>
  * Created by bkoruznjak on 27/09/2017.
  */
 
 public class MainInteractorImpl implements MainInteractor {
 
+    private TeamWebApi mWebApi;
+
+    public MainInteractorImpl(TeamWebApi webApi) {
+        this.mWebApi = webApi;
+    }
 
     @Override
     public void getAllProjectsForUser(final String username, @Nullable final OnDataRetrievedFromServerListener callback) {
-        new Handler().postDelayed(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Result> results = new ArrayList<Result>(5);
-                results.add(new Result("abc"));
-                results.add(new Result("cba"));
-                results.add(new Result("bca"));
-                results.add(new Result("tbf"));
-                results.add(new Result("lll"));
-                callback.onSuccess(results);
+                try {
+                    Response<AllProjectsResponseModel> response = mWebApi.getAllProjects().execute();
+                    if (response.isSuccessful()) {
+                        callback.onSuccess(response.body());
+                    }
+                } catch (IOException ioEx) {
+                    callback.onError(ioEx);
+                }
             }
-        }, 2000);
+        }).start();
     }
 }

@@ -11,8 +11,8 @@ import hr.from.bkoruznjak.teamwork.R;
 import hr.from.bkoruznjak.teamwork.databinding.ActivityMainBinding;
 import hr.from.bkoruznjak.teamwork.main.contract.MainPresenter;
 import hr.from.bkoruznjak.teamwork.main.contract.MainView;
-import hr.from.bkoruznjak.teamwork.main.model.Result;
-import hr.from.bkoruznjak.teamwork.root.AppConstants;
+import hr.from.bkoruznjak.teamwork.network.TeamWebApi;
+import hr.from.bkoruznjak.teamwork.network.model.Project;
 import hr.from.bkoruznjak.teamwork.root.TeamWorkApp;
 
 public class MainActivity extends AppCompatActivity implements MainView {
@@ -24,19 +24,18 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        ((TeamWorkApp) getApplication()).getAppComponent().inject(this);
         init();
     }
 
     private void init() {
-        mPresenter = new MainPresenterImpl(this);
+        mPresenter = new MainPresenterImpl(this, ((TeamWorkApp) getApplication()).getAppComponent());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mPresenter.onResume();
-        mPresenter.loadUserProjectsToUi(AppConstants.USERNAME);
+        mPresenter.loadUserProjectsToUi(TeamWebApi.USERNAME);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void setItems(List<Result> items) {
+    public void setItems(List<Project> items) {
         Log.d("žžž", "got items:" + items.size());
     }
 

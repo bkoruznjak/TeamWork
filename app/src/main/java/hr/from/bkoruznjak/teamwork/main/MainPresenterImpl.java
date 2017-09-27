@@ -1,11 +1,16 @@
 package hr.from.bkoruznjak.teamwork.main;
 
-import java.util.List;
+import android.support.annotation.NonNull;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import hr.from.bkoruznjak.teamwork.main.contract.MainInteractor;
 import hr.from.bkoruznjak.teamwork.main.contract.MainPresenter;
 import hr.from.bkoruznjak.teamwork.main.contract.MainView;
-import hr.from.bkoruznjak.teamwork.main.model.Result;
+import hr.from.bkoruznjak.teamwork.network.TeamWebApi;
+import hr.from.bkoruznjak.teamwork.network.model.AllProjectsResponseModel;
+import hr.from.bkoruznjak.teamwork.root.AppComponent;
 
 /**
  * Created by bkoruznjak on 27/09/2017.
@@ -13,12 +18,16 @@ import hr.from.bkoruznjak.teamwork.main.model.Result;
 
 public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRetrievedFromServerListener {
 
+    @Inject
+    @Named("simpleWebApi")
+    TeamWebApi webApi;
     private MainView mMainView;
     private MainInteractor mMainInteractor;
 
-    public MainPresenterImpl(MainView mainView) {
+    public MainPresenterImpl(MainView mainView, @NonNull AppComponent component) {
+        component.inject(this);
         this.mMainView = mainView;
-        this.mMainInteractor = new MainInteractorImpl();
+        this.mMainInteractor = new MainInteractorImpl(webApi);
     }
 
     /**
@@ -52,10 +61,10 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
     }
 
     @Override
-    public void onSuccess(List<Result> result) {
+    public void onSuccess(AllProjectsResponseModel result) {
         if (mMainView != null) {
             mMainView.hideProgress();
-            mMainView.setItems(result);
+            mMainView.setItems(result.getProjects());
         }
     }
 
