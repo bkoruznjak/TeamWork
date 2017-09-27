@@ -10,6 +10,7 @@ import java.util.List;
 import hr.from.bkoruznjak.teamwork.R;
 import hr.from.bkoruznjak.teamwork.databinding.ActivityMainBinding;
 import hr.from.bkoruznjak.teamwork.main.model.Result;
+import hr.from.bkoruznjak.teamwork.root.AppConstants;
 import hr.from.bkoruznjak.teamwork.root.TeamWorkApp;
 
 public class MainActivity extends AppCompatActivity implements MainView {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onResume() {
         super.onResume();
         mPresenter.onResume();
+        mPresenter.loadUserProjectsToUi(AppConstants.USERNAME);
     }
 
     @Override

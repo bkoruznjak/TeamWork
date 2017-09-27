@@ -12,6 +12,8 @@ import java.util.List;
 import hr.from.bkoruznjak.teamwork.main.model.Result;
 
 import static org.junit.Assert.assertNull;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -34,6 +36,12 @@ public class MainPresenterTest {
     }
 
     @Test
+    public void doesShowProgressOnResume() {
+        mMainPresenter.onResume();
+        verify(view, atLeastOnce()).showProgress();
+    }
+
+    @Test
     public void isViewReleasedOnDestroy() {
         mMainPresenter.onDestroy();
         assertNull(mMainPresenter.getMainView());
@@ -51,5 +59,11 @@ public class MainPresenterTest {
         mMainPresenter.onSuccess(results);
         verify(view, times(1)).setItems(results);
         verify(view, times(1)).hideProgress();
+    }
+
+    @Test
+    public void isItemBeingClicked() {
+        mMainPresenter.onItemClicked(1);
+        verify(view, times(1)).showMessage(anyString());
     }
 }

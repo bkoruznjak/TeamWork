@@ -3,7 +3,6 @@ package hr.from.bkoruznjak.teamwork.main;
 import java.util.List;
 
 import hr.from.bkoruznjak.teamwork.main.model.Result;
-import hr.from.bkoruznjak.teamwork.root.AppConstants;
 
 /**
  * Created by bkoruznjak on 27/09/2017.
@@ -31,11 +30,17 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
     }
 
     @Override
+    public void onItemClicked(int position) {
+        if (mMainView != null) {
+            mMainView.showMessage("item clicked:" + position);
+        }
+    }
+
+    @Override
     public void onResume() {
         if (mMainView != null) {
             mMainView.showProgress();
         }
-        loadUserProjectsToUi(AppConstants.USERNAME);
     }
 
     @Override
