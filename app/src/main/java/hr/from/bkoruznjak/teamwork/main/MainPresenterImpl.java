@@ -3,6 +3,7 @@ package hr.from.bkoruznjak.teamwork.main;
 import java.util.List;
 
 import hr.from.bkoruznjak.teamwork.main.model.Result;
+import hr.from.bkoruznjak.teamwork.root.AppConstants;
 
 /**
  * Created by bkoruznjak on 27/09/2017.
@@ -18,12 +19,23 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
         this.mMainInteractor = new MainInteractorImpl();
     }
 
+    /**
+     * Normally we would call this with credentials stored in shared prefs or a similar storage
+     * but for the sake of this App we have a hard coded constant
+     *
+     * @param user
+     */
     @Override
     public void loadUserProjectsToUi(String user) {
         mMainInteractor.getAllProjectsForUser(user, this);
+    }
+
+    @Override
+    public void onResume() {
         if (mMainView != null) {
             mMainView.showProgress();
         }
+        loadUserProjectsToUi(AppConstants.USERNAME);
     }
 
     @Override
@@ -45,5 +57,9 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
             mMainView.hideProgress();
             mMainView.showMessage("Whoops an error happened");
         }
+    }
+
+    public MainView getMainView() {
+        return mMainView;
     }
 }

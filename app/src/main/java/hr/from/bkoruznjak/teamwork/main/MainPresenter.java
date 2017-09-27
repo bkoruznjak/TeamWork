@@ -8,5 +8,7 @@ public interface MainPresenter {
 
     void loadUserProjectsToUi(String username);
 
+    void onResume();
+
     void onDestroy();
 }

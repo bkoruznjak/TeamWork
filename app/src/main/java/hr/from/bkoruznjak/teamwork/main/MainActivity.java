@@ -15,12 +15,30 @@ import hr.from.bkoruznjak.teamwork.root.TeamWorkApp;
 public class MainActivity extends AppCompatActivity implements MainView {
 
     private ActivityMainBinding mainBinding;
+    private MainPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ((TeamWorkApp) getApplication()).getAppComponent().inject(this);
+        init();
+    }
+
+    private void init() {
+        mPresenter = new MainPresenterImpl(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
