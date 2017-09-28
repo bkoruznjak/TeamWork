@@ -21,10 +21,11 @@ import hr.from.bkoruznjak.teamwork.network.TeamWebApi;
 import hr.from.bkoruznjak.teamwork.network.model.Project;
 import hr.from.bkoruznjak.teamwork.root.TeamWorkApp;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity implements MainView, ProjectRecycleAdapter.OnItemClickListener {
 
     private ActivityMainBinding mainBinding;
     private MainPresenter mPresenter;
+    private ProjectRecycleAdapter mProjectAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     private void init() {
         mPresenter = new MainPresenterImpl(this, ((TeamWorkApp) getApplication()).getAppComponent());
+        mProjectAdapter = new ProjectRecycleAdapter();
         mainBinding.recyclerViewMainContent.setLayoutManager(new LinearLayoutManager(this));
         mainBinding.recyclerViewMainContent.setItemAnimator(new DefaultItemAnimator());
+        mainBinding.recyclerViewMainContent.setAdapter(mProjectAdapter);
     }
 
     @Override
@@ -44,6 +47,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onResume();
         mPresenter.onResume();
         mPresenter.loadUserProjectsToUi(TeamWebApi.USERNAME);
+        mProjectAdapter.addOnItemClickListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mProjectAdapter.removeOnItemClickListener();
     }
 
     @Override
@@ -68,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mainBinding.recyclerViewMainContent.setAdapter(new ProjectRecycleAdapter(items));
+                mProjectAdapter.setProjectData(items);
+                mProjectAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -76,5 +87,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void showMessage(String message) {
         Log.d("žžž", "random message");
+    }
+
+    @Override
+    public void onProjectClicked(Project project) {
+        Log.d("žžž", "project clicked:" + project.getName());
     }
 }
