@@ -1,5 +1,6 @@
 package hr.from.bkoruznjak.teamwork.main;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
@@ -14,6 +15,8 @@ import java.util.List;
 
 import hr.from.bkoruznjak.teamwork.R;
 import hr.from.bkoruznjak.teamwork.databinding.ActivityMainBinding;
+import hr.from.bkoruznjak.teamwork.detail.DetailActivity;
+import hr.from.bkoruznjak.teamwork.detail.ProjectDetail;
 import hr.from.bkoruznjak.teamwork.main.adapter.ProjectRecycleAdapter;
 import hr.from.bkoruznjak.teamwork.main.contract.MainPresenter;
 import hr.from.bkoruznjak.teamwork.main.contract.MainView;
@@ -91,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements MainView, Project
 
     @Override
     public void onProjectClicked(Project project) {
+        //todo start detail activity
         Log.d("žžž", "project clicked:" + project.getName());
+        Intent detailActivityIntent = new Intent(this, DetailActivity.class);
+        detailActivityIntent.putExtra(ProjectDetail.KEY, new ProjectDetail(project));
+        startActivity(detailActivityIntent);
     }
 }
