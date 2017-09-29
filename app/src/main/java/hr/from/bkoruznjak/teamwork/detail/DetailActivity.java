@@ -19,6 +19,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Bundle data = getIntent().getExtras();
         ProjectDetail project = data.getParcelable(ProjectDetail.KEY);
+        setTitle(project.getName());
         mDetailBinding.textViewDescription.setText(project.getDescription());
     }
 
