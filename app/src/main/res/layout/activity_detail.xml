@@ -155,7 +155,7 @@
                 android:paddingBottom="4dp"
                 android:paddingStart="16dp"
                 android:paddingTop="4dp"
-                android:text="TextView"
+                android:text="@string/project_archived"
                 android:textAlignment="textStart"
                 android:textColor="@color/white"
                 app:layout_constraintHorizontal_bias="0.0"

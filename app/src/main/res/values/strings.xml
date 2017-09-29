@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TeamWork</string>
 
+    <string name="project_archived">Project is finished and archived.</string>
     <string name="project_on_time">Due to finish in about %1$s</string>
     <string name="project_late">Project is %1$s late</string>
 

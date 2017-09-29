@@ -9,6 +9,6 @@
         android:topLeftRadius="2dp"
         android:topRightRadius="2dp" />
 
-    <solid android:color="@color/valencia" />
+    <solid android:color="@color/jordyblue" />
 
 </shape>

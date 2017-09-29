@@ -41,7 +41,6 @@ public class DetailActivity extends AppCompatActivity {
         String startYearString = "";
         String endDateString = "";
         String endYearString = "";
-        String dueToFinish = "";
         try {
             Date startDate = DateUtil.dateParseFormat.parse(project.getStartDate());
             Date endDate = DateUtil.dateParseFormat.parse(project.getEndDate());
@@ -51,21 +50,20 @@ public class DetailActivity extends AppCompatActivity {
             endDateString = DateUtil.monthDayFormat.format(endDate);
             endYearString = DateUtil.yearFormat.format(endDate);
 
-            dueToFinish = DateUtil.getProjectStatusString(getResources(), endDate.getTime());
-            long timeDiff = endDate.getTime() - currentDate.getTime();
-
-            if (timeDiff > 0) {
-                //we still have time
-                mDetailBinding.textViewProjectStatus.setBackgroundColor(getResources().getColor(R.color.jordyblue));
-            } else {
-                //were over due
-                mDetailBinding.textViewProjectStatus.setBackgroundColor(getResources().getColor(R.color.valencia));
+            if (ProjectDetail.STATUS_ACTIVE.equals(project.getStatus())) {
+                long timeDiff = endDate.getTime() - currentDate.getTime();
+                if (timeDiff > 0) {
+                    //we still have time
+                    mDetailBinding.textViewProjectStatus.setBackgroundColor(getResources().getColor(R.color.jordyblue));
+                } else {
+                    //were over due
+                    mDetailBinding.textViewProjectStatus.setBackgroundColor(getResources().getColor(R.color.valencia));
+                }
+                mDetailBinding.textViewProjectStatus.setText(DateUtil.getProjectStatusString(getResources(), endDate.getTime()));
             }
         } catch (ParseException parEx) {
             Log.e("žžž", "parse exception:" + parEx);
         }
-
-        mDetailBinding.textViewProjectStatus.setText(dueToFinish);
         mDetailBinding.textViewStartDate.setText(startDateString);
         mDetailBinding.textViewStartYear.setText(startYearString);
         mDetailBinding.textViewEndDate.setText(endDateString);
