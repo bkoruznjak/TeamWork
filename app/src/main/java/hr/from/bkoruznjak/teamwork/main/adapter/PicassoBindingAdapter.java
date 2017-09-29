@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import hr.from.bkoruznjak.teamwork.R;
+
 import static hr.from.bkoruznjak.teamwork.network.TeamWebApi.PLACEHOLDER_IMAGE_URL;
 
 /**
@@ -19,6 +21,6 @@ public class PicassoBindingAdapter {
         if (TextUtils.isEmpty(url)) {
             url = PLACEHOLDER_IMAGE_URL;
         }
-        Picasso.with(imageView.getContext()).load(url).into(imageView);
+        Picasso.with(imageView.getContext()).load(url).placeholder(R.drawable.img_placeholder).into(imageView);
     }
 }
