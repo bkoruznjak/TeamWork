@@ -12,6 +12,8 @@ import hr.from.bkoruznjak.teamwork.network.model.Project;
 public class ProjectDetail implements Parcelable {
 
     public static final String KEY = "ProjectDetail";
+    public static final String STATUS_ACTIVE = "active";
+    public static final String STATUS_ARCHIVE = "inactive";
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public ProjectDetail createFromParcel(Parcel in) {
             return new ProjectDetail(in);
@@ -24,12 +26,18 @@ public class ProjectDetail implements Parcelable {
     private long mId;
     private String mName;
     private String mDescription;
+    private String mStartDate;
+    private String mEndDate;
+    private String mStatus;
 
     // Constructor
     public ProjectDetail(Project project) {
         this.mId = Long.valueOf(project.getId());
         this.mName = project.getName();
         this.mDescription = project.getDescription();
+        this.mStatus = project.getStatus();
+        this.mStartDate = project.getStartDate();
+        this.mEndDate = project.getEndDate();
     }
 
     // Parcelling part
@@ -37,6 +45,9 @@ public class ProjectDetail implements Parcelable {
         this.mId = in.readLong();
         this.mName = in.readString();
         this.mDescription = in.readString();
+        this.mStatus = in.readString();
+        this.mStartDate = in.readString();
+        this.mEndDate = in.readString();
     }
 
     @Override
@@ -49,6 +60,9 @@ public class ProjectDetail implements Parcelable {
         destination.writeLong(this.mId);
         destination.writeString(this.mName);
         destination.writeString(this.mDescription);
+        destination.writeString(this.mStatus);
+        destination.writeString(this.mStartDate);
+        destination.writeString(this.mEndDate);
     }
 
     @Override
@@ -57,6 +71,9 @@ public class ProjectDetail implements Parcelable {
                 "mId=" + mId +
                 ", mName='" + mName + '\'' +
                 ", mDescription='" + mDescription + '\'' +
+                ", mStartDate='" + mStartDate + '\'' +
+                ", mEndDate='" + mEndDate + '\'' +
+                ", mStatus='" + mStatus + '\'' +
                 '}';
     }
 
@@ -70,5 +87,17 @@ public class ProjectDetail implements Parcelable {
 
     public String getDescription() {
         return mDescription;
+    }
+
+    public String getStartDate() {
+        return mStartDate;
+    }
+
+    public String getEndDate() {
+        return mEndDate;
+    }
+
+    public String getStatus() {
+        return mStatus;
     }
 }
