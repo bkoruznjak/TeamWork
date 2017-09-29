@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
 import java.util.List;
@@ -88,14 +87,7 @@ public class MainActivity extends AppCompatActivity implements MainView, Project
     }
 
     @Override
-    public void showMessage(String message) {
-        Log.d("žžž", "random message");
-    }
-
-    @Override
     public void onProjectClicked(Project project) {
-        //todo start detail activity
-        Log.d("žžž", "project clicked:" + project.getName());
         Intent detailActivityIntent = new Intent(this, DetailActivity.class);
         detailActivityIntent.putExtra(ProjectDetail.KEY, new ProjectDetail(project));
         startActivity(detailActivityIntent);

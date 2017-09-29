@@ -42,13 +42,6 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
     }
 
     @Override
-    public void onItemClicked(int position) {
-        if (mMainView != null) {
-            mMainView.showMessage("item clicked:" + position);
-        }
-    }
-
-    @Override
     public void onResume() {
         if (mMainView != null) {
             mMainView.showProgress();
@@ -72,7 +65,6 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnDataRe
     public void onError(Throwable error) {
         if (mMainView != null) {
             mMainView.hideProgress();
-            mMainView.showMessage("Whoops an error happened");
         }
     }
 

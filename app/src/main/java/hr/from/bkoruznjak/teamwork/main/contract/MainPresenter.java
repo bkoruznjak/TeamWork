@@ -8,8 +8,6 @@ public interface MainPresenter {
 
     void loadUserProjectsToUi(String username);
 
-    void onItemClicked(int position);
-
     void onResume();
 
     void onDestroy();

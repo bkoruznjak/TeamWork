@@ -16,6 +16,4 @@ public interface MainView {
 
     void setItems(List<Project> items);
 
-    void showMessage(String message);
-
 }

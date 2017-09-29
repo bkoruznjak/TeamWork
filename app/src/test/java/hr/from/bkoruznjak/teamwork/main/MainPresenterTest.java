@@ -16,7 +16,6 @@ import hr.from.bkoruznjak.teamwork.network.model.Project;
 import hr.from.bkoruznjak.teamwork.root.AppComponent;
 
 import static org.junit.Assert.assertNull;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -62,12 +61,6 @@ public class MainPresenterTest {
         mMainPresenter.onSuccess(response);
         verify(view, times(1)).setItems(response.getProjects());
         verify(view, times(1)).hideProgress();
-    }
-
-    @Test
-    public void isItemBeingClicked() {
-        mMainPresenter.onItemClicked(1);
-        verify(view, times(1)).showMessage(anyString());
     }
 
     @Test
