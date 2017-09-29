@@ -15,5 +15,4 @@ public interface MainView {
     void hideProgress();
 
     void setItems(List<Project> items);
-
 }

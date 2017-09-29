@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainView, Project
     }
 
     private void init() {
+        setTitle(getResources().getString(R.string.main_title));
         mPresenter = new MainPresenterImpl(this, ((TeamWorkApp) getApplication()).getAppComponent());
         mProjectAdapter = new ProjectRecycleAdapter();
         mainBinding.recyclerViewMainContent.setLayoutManager(new LinearLayoutManager(this));
